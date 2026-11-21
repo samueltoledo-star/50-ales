@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mis 50 años Ale 🪩 | Cabina de Fotos en Vivo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter, Plus Jakarta Sans, Playfair Display (elegante para los 50) & Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- QRCode.js para generar códigos QR escaneables -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <!-- Canvas Confetti para celebraciones -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    
+    <!-- JSZip para descargar todas las fotos al final de la fiesta -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'pop-in': 'popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'disco-swing': 'discoSwing 4.5s ease-in-out infinite',
+                        'sparkle-twinkle': 'sparkleTwinkle 2.8s ease-in-out infinite',
+                        'beam-sweep': 'beamSweep 9s ease-in-out infinite alternate',
+                        'photo-float': 'photoFloat 5.5s ease-in-out infinite',
+                        'ken-burns': 'kenBurns 7s ease-in-out infinite alternate',
+                        'fly-to-screen': 'flyToScreen 0.85s cubic-bezier(0.32, 0, 0.67, 0) forwards',
+                        'disco-aura': 'discoAura 4s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.85) translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+                        },
+                        discoSwing: {
+                            '0%, 100%': { transform: 'rotate(-4deg)' },
+                            '50%': { transform: 'rotate(4deg)' },
+                        },
+                        sparkleTwinkle: {
+                            '0%, 100%': { opacity: '0.2', transform: 'scale(0.7)' },
+                            '50%': { opacity: '1', transform: 'scale(1.25)' },
+                        },
+                        beamSweep: {
+                            '0%': { transform: 'rotate(-18deg) scaleY(1)' },
+                            '100%': { transform: 'rotate(18deg) scaleY(1.08)' },
+                        },
+                        photoFloat: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(-1.2deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(1.2deg)' },
+                        },
+                        kenBurns: {
+                            '0%': { transform: 'scale(1) translate(0%, 0%)' },
+                            '100%': { transform: 'scale(1.09) translate(-1.5%, -1%)' },
+                        },
+                        flyToScreen: {
+                            '0%': { opacity: '1', transform: 'scale(1) translateY(0) rotate(0deg)' },
+                            '30%': { opacity: '1', transform: 'scale(1.05) translateY(15px) rotate(-3deg)' },
+                            '100%': { opacity: '0', transform: 'scale(0.22) translateY(-135vh) rotate(14deg)' },
+                        },
+                        discoAura: {
+                            '0%, 100%': { boxShadow: '0 20px 50px -10px rgba(212, 175, 55, 0.45), 0 0 28px rgba(236, 72, 153, 0.35)' },
+                            '50%': { boxShadow: '0 25px 60px -10px rgba(6, 182, 212, 0.45), 0 0 34px rgba(245, 158, 11, 0.45)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top center, #FAF6F0 0%, #F5EFE6 45%, #EDE0D4 100%);
+            color: #2C221E;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Scrollbar elegante beige/dorado */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(44, 34, 30, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.45);
+            border-radius: 9999px;
+        }
+
+        /* Estilos específicos para filtros de cámara/previsualización */
+        .filter-normal { filter: none; }
+        .filter-bw { filter: grayscale(100%) contrast(115%); }
+        .filter-neon { filter: contrast(120%) saturate(150%) hue-rotate(-10deg); }
+        .filter-vintage { filter: sepia(35%) contrast(105%) brightness(105%); }
+
+        /* Efecto cristal champagne cálido */
+        .glass {
+            background: rgba(255, 251, 245, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.32);
+            box-shadow: 0 12px 32px -8px rgba(44, 34, 30, 0.1);
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.62);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.28);
+        }
+
+        /* Haces de luces disco de colores sobre fondo beige */
+        .disco-beam {
+            position: absolute;
+            top: -15%;
+            width: 28vw;
+            min-width: 220px;
+            height: 130vh;
+            transform-origin: top center;
+            clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
+            filter: blur(24px);
+            pointer-events: none;
+        }
+
+        /* Destello de Flash de Cámara en Pantalla */
+        @keyframes cameraFlashAnim {
+            0% { opacity: 0.96; }
+            100% { opacity: 0; }
+        }
+        .camera-flash-active {
+            animation: cameraFlashAnim 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Contenedor QR blanco limpio para escaneo perfecto */
+        .qr-wrapper img, .qr-wrapper canvas {
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        /* Ocultar barra de controles del proyector cuando está inactiva */
+        .projector-controls-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(16px);
+        }
+        .projector-controls-visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Animaciones continuas para fotos en vivo y muro flotante */
+        @keyframes slideEnterDynamic {
+            0% { opacity: 0; transform: scale(0.72) translateY(45px) rotate(-5deg); filter: brightness(1.6); }
+            65% { opacity: 1; transform: scale(1.03) translateY(-6px) rotate(1.5deg); filter: brightness(1.08); }
+            100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); filter: brightness(1); }
+        }
+        @keyframes slideExitDynamic {
+            0% { opacity: 1; transform: scale(1) translateX(0) rotate(0deg); }
+            100% { opacity: 0; transform: scale(0.84) translateX(-70px) rotate(-6deg); }
+        }
+        @keyframes wallBobbing {
+            0%, 100% { transform: translateY(0px) rotate(var(--tilt-a, -1.5deg)); }
+            50% { transform: translateY(-10px) rotate(var(--tilt-b, 1.5deg)); }
+        }
+        @keyframes shimmerSweep {
+            0% { transform: translateX(-140%) skewX(-20deg); }
+            100% { transform: translateX(240%) skewX(-20deg); }
+        }
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .slide-enter-dynamic {
+            animation: slideEnterDynamic 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .slide-exit-dynamic {
+            animation: slideExitDynamic 0.45s cubic-bezier(0.4, 0, 1, 1) forwards;
+        }
+        .wall-card-floating {
+            animation: wallBobbing var(--bob-dur, 4.8s) ease-in-out infinite;
+            animation-delay: var(--bob-delay, 0s);
+        }
+        .disco-shimmer::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+            animation: shimmerSweep 3.2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .timeline-progress-bar {
+            animation: progressFill 10s linear forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-amber-400 selection:text-[#2C221E]">
+
+    <!-- Flash Realista de Cámara (se activa al tomar o recibir foto) -->
+    <div id="camera-flash-overlay" class="fixed inset-0 z-[60] bg-white pointer-events-none opacity-0"></div>
+
+    <!-- Fondo Ambiental Disco Beige + Luces de Colores + Bolas de Boliche -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <!-- Haces de luces de boliche suaves en colores festivos -->
+        <div class="disco-beam left-[8%] bg-gradient-to-b from-fuchsia-400/30 via-pink-400/15 to-transparent animate-beam-sweep"></div>
+        <div class="disco-beam left-[36%] bg-gradient-to-b from-amber-300/35 via-yellow-300/15 to-transparent animate-beam-sweep" style="animation-delay: -3s;"></div>
+        <div class="disco-beam right-[10%] bg-gradient-to-b from-cyan-400/30 via-violet-400/15 to-transparent animate-beam-sweep" style="animation-delay: -6s;"></div>
+
+        <!-- Luces bokeh de colores -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-fuchsia-400/25 rounded-full filter blur-3xl animate-blob"></div>
+        <div class="absolute top-1/4 -right-24 w-96 h-96 bg-cyan-400/25 rounded-full filter blur-3xl animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-24 left-1/3 w-96 h-96 bg-amber-400/30 rounded-full filter blur-3xl animate-blob" style="animation-delay: 4s;"></div>
+        <div class="absolute bottom-1/4 left-10 w-72 h-72 bg-emerald-400/20 rounded-full filter blur-3xl animate-blob" style="animation-delay: 5s;"></div>
+
+        <!-- Bola de Boliche Colgante Izquierda -->
+        <div class="absolute top-0 left-3 sm:left-10 origin-top animate-disco-swing opacity-95">
+            <div class="w-0.5 h-10 sm:h-16 bg-gradient-to-b from-amber-700/60 to-amber-500 mx-auto"></div>
+            <svg class="w-16 h-16 sm:w-24 sm:h-24 drop-shadow-[0_10px_20px_rgba(212,175,55,0.45)]" viewBox="0 0 120 120" fill="none">
+                <defs>
+                    <radialGradient id="discoGrad1" cx="35%" cy="30%" r="70%">
+                        <stop offset="0%" stop-color="#FFFFFF"/>
+                        <stop offset="35%" stop-color="#F3E5AB"/>
+                        <stop offset="75%" stop-color="#C5A059"/>
+                        <stop offset="100%" stop-color="#7C5E2A"/>
+                    </radialGradient>
+                </defs>
+                <circle cx="60" cy="60" r="52" fill="url(#discoGrad1)" stroke="#D4AF37" stroke-width="2"/>
+                <!-- Cuadrícula de espejos -->
+                <g stroke="#FFFDF7" stroke-opacity="0.65" stroke-width="1.2">
+                    <ellipse cx="60" cy="60" rx="52" ry="14"/>
+                    <ellipse cx="60" cy="60" rx="52" ry="32"/>
+                    <ellipse cx="60" cy="60" rx="52" ry="45"/>
+                    <ellipse cx="60" cy="60" rx="14" ry="52"/>
+                    <ellipse cx="60" cy="60" rx="32" ry="52"/>
+                    <ellipse cx="60" cy="60" rx="45" ry="52"/>
+                </g>
+                <!-- Espejos de colores reflejando luces -->
+                <rect x="42" y="34" width="10" height="9" rx="1.5" fill="#F472B6" opacity="0.85"/>
+                <rect x="64" y="46" width="11" height="9" rx="1.5" fill="#38BDF8" opacity="0.85"/>
+                <rect x="36" y="64" width="10" height="9" rx="1.5" fill="#FDE047" opacity="0.9"/>
+                <rect x="68" y="68" width="10" height="9" rx="1.5" fill="#A78BFA" opacity="0.85"/>
+                <rect x="52" y="22" width="9" height="8" rx="1.5" fill="#FFFFFF" opacity="0.95"/>
+                <!-- Destello estrella -->
+                <path d="M35 28 L37 35 L44 37 L37 39 L35 46 L33 39 L26 37 L33 35 Z" fill="#FFFFFF"/>
+            </svg>
+        </div>
+
+        <!-- Bola de Boliche Colgante Derecha -->
+        <div class="hidden sm:block absolute top-0 right-10 origin-top animate-disco-swing opacity-95" style="animation-delay: -2.2s;">
+            <div class="w-0.5 h-12 bg-gradient-to-b from-amber-700/60 to-amber-500 mx-auto"></div>
+            <svg class="w-20 h-20 drop-shadow-[0_10px_20px_rgba(212,175,55,0.45)]" viewBox="0 0 120 120" fill="none">
+                <circle cx="60" cy="60" r="52" fill="url(#discoGrad1)" stroke="#D4AF37" stroke-width="2"/>
+                <g stroke="#FFFDF7" stroke-opacity="0.65" stroke-width="1.2">
+                    <ellipse cx="60" cy="60" rx="52" ry="15"/>
+                    <ellipse cx="60" cy="60" rx="52" ry="34"/>
+                    <ellipse cx="60" cy="60" rx="15" ry="52"/>
+                    <ellipse cx="60" cy="60" rx="34" ry="52"/>
+                </g>
+                <rect x="46" y="42" width="10" height="9" rx="1.5" fill="#22D3EE" opacity="0.85"/>
+                <rect x="62" y="58" width="10" height="9" rx="1.5" fill="#E879F9" opacity="0.85"/>
+                <rect x="40" y="66" width="9" height="8" rx="1.5" fill="#FACC15" opacity="0.9"/>
+                <path d="M80 32 L82 38 L88 40 L82 42 L80 48 L78 42 L72 40 L78 38 Z" fill="#FFFFFF"/>
+            </svg>
+        </div>
+
+        <!-- Destellos / Estrellitas flotantes -->
+        <div class="absolute top-28 left-1/4 text-amber-500 animate-sparkle-twinkle text-lg">✦</div>
+        <div class="absolute top-40 right-1/4 text-fuchsia-500 animate-sparkle-twinkle text-xl" style="animation-delay: 1s;">✦</div>
+        <div class="absolute bottom-32 left-1/5 text-cyan-500 animate-sparkle-twinkle text-lg" style="animation-delay: 1.8s;">✦</div>
+        <div class="absolute bottom-24 right-1/3 text-amber-500 animate-sparkle-twinkle text-xl" style="animation-delay: 0.6s;">✦</div>
+    </div>
+
+    <!-- Sistema de Notificaciones (Toast) -->
+    <div id="toast-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 w-[90%] max-w-md pointer-events-none"></div>
+
+    <!-- ===================================================================== -->
+    <!-- VISTA 1: SELECTOR DE MODO / INICIO (HOME)                             -->
+    <!-- ===================================================================== -->
+    <main id="view-home" class="relative z-10 flex-1 flex flex-col items-center justify-center p-5 sm:p-8 max-w-4xl mx-auto w-full">
+        <div class="text-center mb-8 sm:mb-10 animate-pop-in">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-light text-xs sm:text-sm font-semibold text-amber-900 mb-4 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span id="connection-status-text">Conectando en vivo...</span>
+                <span>🪩</span>
+            </div>
+            <p class="uppercase tracking-[0.25em] text-xs sm:text-sm font-bold text-amber-800/80 mb-1">
+                ¡A celebrar toda la noche! ✨
+            </p>
+            <h1 class="font-serif text-5xl sm:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-[#2C221E] via-amber-700 to-fuchsia-700 bg-clip-text text-transparent mb-3 drop-shadow-sm">
+                Mis 50 años Ale
+            </h1>
+            <p class="text-[#5C4B43] text-base sm:text-lg max-w-xl mx-auto font-medium">
+                Escaneá el código QR desde tu celular, sacá fotos con luces y dedicatorias, y miralas brillar al instante en la pantalla de la fiesta.
+            </p>
+        </div>
+
+        <!-- Tarjetas de selección de modo -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full mb-8">
+            <!-- Opción 1: Modo Invitado -->
+            <button onclick="switchMode('guest')" class="group relative text-left p-6 sm:p-8 rounded-3xl glass hover:bg-white/95 transition-all duration-300 border border-amber-400/40 hover:border-fuchsia-500/60 shadow-xl flex flex-col justify-between overflow-hidden">
+                <div class="absolute -right-8 -top-8 w-36 h-36 bg-fuchsia-400/20 rounded-full blur-2xl group-hover:bg-fuchsia-400/35 transition-all"></div>
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-500 via-pink-500 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-fuchsia-500/25 mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="camera" class="w-7 h-7"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-fuchsia-700">Para tu celular</span>
+                    <h2 class="font-display text-2xl font-bold text-[#2C221E] mt-1 mb-2">📱 Modo Invitado</h2>
+                    <p class="text-[#5C4B43] text-sm leading-relaxed">
+                        Abrí la cámara, sacá una foto con filtros y dedicatoria para Ale, y enviala directo a la pantalla gigante.
+                    </p>
+                </div>
+                <div class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-fuchsia-700 group-hover:translate-x-1 transition-transform">
+                    Abrir Cámara ahora <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </button>
+
+            <!-- Opción 2: Modo Proyector / Pantalla -->
+            <button onclick="switchMode('projector')" class="group relative text-left p-6 sm:p-8 rounded-3xl glass hover:bg-white/95 transition-all duration-300 border border-amber-400/40 hover:border-amber-600/60 shadow-xl flex flex-col justify-between overflow-hidden">
+                <div class="absolute -right-8 -top-8 w-36 h-36 bg-amber-400/25 rounded-full blur-2xl group-hover:bg-amber-400/40 transition-all"></div>
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 via-yellow-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-amber-500/25 mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="monitor-play" class="w-7 h-7"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Para TV o Proyector</span>
+                    <h2 class="font-display text-2xl font-bold text-[#2C221E] mt-1 mb-2">🪩 Modo Pantalla en Vivo</h2>
+                    <p class="text-[#5C4B43] text-sm leading-relaxed">
+                        Proyectá los recuerdos de los 50 de Ale en tiempo real con flashes, presentación y el código QR en pantalla.
+                    </p>
+                </div>
+                <div class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-amber-800 group-hover:translate-x-1 transition-transform">
+                    Iniciar Proyección <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- Guía rápida de uso -->
+        <div class="w-full rounded-2xl glass-light p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#4A3B34]">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-800 shrink-0">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-[#2C221E]">¿Cómo funciona en los 50 de Ale?</p>
+                    <p class="text-[#5C4B43]">Abrí el <b>Modo Pantalla</b> en la compu conectada al proyector. Los invitados escanean el QR con su celu y ¡a brillar!</p>
+                </div>
+            </div>
+            <button onclick="openQrModal()" class="shrink-0 px-4 py-2.5 rounded-xl bg-[#2C221E] hover:bg-amber-900 text-[#FAF6F0] font-semibold flex items-center gap-2 transition shadow-md">
+                <i data-lucide="qr-code" class="w-4 h-4 text-amber-300"></i> Ver QR Invitados
+            </button>
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- VISTA 2: MODO INVITADO (CÁMARA Y SUBIDA MÓVIL)                        -->
+    <!-- ===================================================================== -->
+    <section id="view-guest" class="hidden relative z-10 flex-1 flex flex-col max-w-lg mx-auto w-full p-4 sm:p-6">
+        <!-- Header Invitado -->
+        <header class="flex items-center justify-between mb-4">
+            <button onclick="switchMode('home')" class="p-2.5 rounded-xl glass-light text-[#2C221E] hover:bg-white transition flex items-center gap-1.5 text-sm font-semibold">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i> Inicio
+            </button>
+            <div class="text-center">
+                <span class="font-serif font-extrabold text-lg sm:text-xl bg-gradient-to-r from-[#2C221E] via-amber-700 to-fuchsia-700 bg-clip-text text-transparent">
+                    Mis 50 años Ale 🪩
+                </span>
+            </div>
+            <button onclick="switchMode('projector')" class="p-2.5 rounded-xl glass-light text-amber-900 hover:bg-white transition flex items-center gap-1.5 text-xs font-bold" title="Ver pantalla en vivo">
+                <i data-lucide="tv" class="w-4 h-4"></i> Pantalla
+            </button>
+        </header>
+
+        <!-- PASO A: CAPTURAR O ELEGIR FOTO -->
+        <div id="guest-step-capture" class="flex-1 flex flex-col justify-between gap-4">
+            <div class="text-center">
+                <h1 class="font-display text-2xl font-extrabold text-[#2C221E]">¡Sacá tu foto para Ale! 📸✨</h1>
+                <p class="text-[#5C4B43] text-sm mt-1">Aparecerá al instante en la pantalla de la fiesta</p>
+            </div>
+
+            <!-- Visor de Cámara en Vivo o Botones de Captura -->
+            <div class="relative w-full aspect-[3/4] max-h-[56vh] rounded-3xl overflow-hidden glass border-2 border-amber-400/70 animate-disco-aura flex flex-col items-center justify-center bg-[#F7F1E8]">
+                <!-- Marco animado disco alrededor del visor -->
+                <div class="pointer-events-none absolute inset-2 rounded-2xl border border-amber-300/60 z-20 flex flex-col justify-between p-3">
+                    <div class="flex justify-between items-center">
+                        <span class="px-2.5 py-0.5 rounded-full bg-black/45 backdrop-blur-md text-[10px] font-bold text-amber-200 tracking-wider uppercase flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-ping"></span> EN VIVO • 50 ALE
+                        </span>
+                        <span class="text-amber-400 animate-sparkle-twinkle text-sm">✦</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400 animate-sparkle-twinkle text-sm" style="animation-delay: 1.2s;">✦</span>
+                        <span class="text-cyan-400 animate-sparkle-twinkle text-sm" style="animation-delay: 0.6s;">✦</span>
+                    </div>
+                </div>
+
+                <!-- Video de WebRTC (Cámara en vivo integrada) -->
+                <video id="live-video" autoplay playsinline muted class="hidden w-full h-full object-cover"></video>
+                
+                <!-- Placeholder / Acceso Directo Cámara Nativa -->
+                <div id="camera-placeholder" class="p-6 text-center flex flex-col items-center justify-center h-full w-full">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-500 via-fuchsia-500 to-cyan-500 flex items-center justify-center mb-5 shadow-xl shadow-amber-500/30 animate-pulse-slow">
+                        <i data-lucide="camera" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-[#2C221E] mb-1">Mis 50 años Ale</h3>
+                    <p class="text-[#5C4B43] text-xs max-w-xs mb-6">
+                        Activá tu cámara en vivo para sacar selfies y brindis directo a la pantalla.
+                    </p>
+
+                    <!-- Botón Principal: Abre la cámara en vivo directamente -->
+                    <button type="button" onclick="startLiveCamera()" class="w-full max-w-xs cursor-pointer py-4 px-6 rounded-2xl bg-gradient-to-r from-[#2C221E] via-amber-800 to-fuchsia-800 hover:opacity-95 text-[#FAF6F0] font-bold text-base shadow-lg flex items-center justify-center gap-2.5 active:scale-95 transition mb-3">
+                        <i data-lucide="camera" class="w-5 h-5 text-amber-300"></i>
+                        Sacar Foto Ahora
+                    </button>
+
+                    <!-- Botón Secundario: Elegir de la galería (opcional) -->
+                    <label for="gallery-input" class="w-full max-w-xs cursor-pointer py-2.5 px-5 rounded-xl text-[#5C4B43] hover:text-[#2C221E] text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                        <i data-lucide="image" class="w-4 h-4"></i>
+                        O elegí una foto de tu galería
+                    </label>
+                    <input id="gallery-input" type="file" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
+                </div>
+
+                <!-- Controles flotantes cuando el visor WebRTC está activo -->
+                <div id="live-camera-controls" class="hidden absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/35 to-transparent flex items-center justify-around z-30">
+                    <button type="button" onclick="stopLiveCamera()" class="p-3.5 rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur-md transition" title="Cerrar cámara">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                    <button type="button" onclick="captureLiveFrame()" class="w-20 h-20 rounded-full bg-white p-1.5 shadow-2xl active:scale-90 transition flex items-center justify-center" title="Tomar foto">
+                        <span class="w-full h-full rounded-full border-4 border-amber-500 bg-gradient-to-tr from-amber-400 to-fuchsia-500 block"></span>
+                    </button>
+                    <button type="button" onclick="toggleCameraFacing()" class="p-3.5 rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur-md transition" title="Cambiar cámara">
+                        <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contador en vivo de fotos de la fiesta -->
+            <div class="glass-light rounded-2xl p-3.5 flex items-center justify-between text-xs text-[#4A3B34]">
+                <span class="flex items-center gap-2 font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    Fotos en los 50 de Ale:
+                </span>
+                <span id="guest-photo-count" class="font-bold text-[#2C221E] text-sm">0</span>
+            </div>
+        </div>
+
+        <!-- PASO B: EDITAR, FILTRAR Y ENVIAR FOTO (SIEMPRE ANIMADO Y CON ENVÍO RÁPIDO) -->
+        <div id="guest-step-preview" class="hidden flex-1 flex flex-col gap-3.5 animate-pop-in">
+            <!-- Barra superior de envío automático rápido (para que la foto nunca quede trabada) -->
+            <div class="glass-light rounded-2xl px-3.5 py-2 flex items-center justify-between gap-2 border border-amber-400/50">
+                <div class="flex items-center gap-2 text-xs font-bold text-[#2C221E]">
+                    <span class="w-2 h-2 rounded-full bg-fuchsia-500 animate-ping"></span>
+                    <span id="auto-send-label">¡Lista para volar! Envío en <strong id="auto-send-seconds" class="text-fuchsia-700">10s</strong></span>
+                </div>
+                <button type="button" id="btn-toggle-autosend" onclick="toggleAutoSendTimer()" class="px-2.5 py-1 rounded-lg bg-[#2C221E] text-amber-200 text-[11px] font-bold hover:bg-amber-900 transition">
+                    Pausar para escribir
+                </button>
+            </div>
+
+            <!-- Marco de Previsualización Flotante y Dinámico -->
+            <div id="preview-frame-container" class="relative mx-auto w-full max-w-sm rounded-2xl overflow-hidden bg-white border-2 border-amber-400/70 animate-photo-float animate-disco-aura transition-all duration-300">
+                <div class="relative aspect-[4/4] w-full overflow-hidden bg-[#1F1815] disco-shimmer">
+                    <img id="preview-image" src="" alt="Vista previa" class="w-full h-full object-cover animate-ken-burns transition-all duration-300 filter-normal">
+                    <!-- Destellos animados sobre la vista previa -->
+                    <div class="pointer-events-none absolute top-3 left-3 text-amber-300 text-lg animate-sparkle-twinkle">✦</div>
+                    <div class="pointer-events-none absolute bottom-3 right-3 text-fuchsia-300 text-lg animate-sparkle-twinkle" style="animation-delay: 0.9s;">✦</div>
+                    <!-- Sticker decorativo opcional -->
+                    <div id="preview-sticker-overlay" class="hidden absolute top-3 right-3 px-3 py-1 rounded-full bg-gradient-to-r from-fuchsia-600 to-amber-500 text-white font-bold text-xs shadow-lg animate-pulse">
+                        🪩 ¡MIS 50 AÑOS ALE!
+                    </div>
+                </div>
+                <!-- Pie estilo Polaroid si se activa -->
+                <div id="polaroid-caption-preview" class="hidden bg-[#FFFDF9] text-[#2C221E] px-4 py-3 text-center">
+                    <p id="polaroid-text" class="font-handwriting text-2xl font-bold leading-tight truncate">¡Felices 50 Ale! ✨</p>
+                    <p id="polaroid-author" class="text-[11px] font-semibold uppercase tracking-widest text-amber-800 mt-0.5">Invitado</p>
+                </div>
+            </div>
+
+            <!-- Selector de Filtros y Marcos -->
+            <div>
+                <label class="block text-xs font-bold text-[#5C4B43] uppercase tracking-wider mb-1.5">Estilo y Filtro</label>
+                <div class="grid grid-cols-4 gap-2">
+                    <button type="button" onclick="setPhotoStyle('normal')" id="style-btn-normal" class="style-btn py-2 px-2 rounded-xl text-xs font-bold bg-[#2C221E] text-amber-200 border border-amber-400 transition">
+                        ✨ Normal
+                    </button>
+                    <button type="button" onclick="setPhotoStyle('polaroid')" id="style-btn-polaroid" class="style-btn py-2 px-2 rounded-xl text-xs font-semibold glass-light text-[#2C221E] hover:bg-white transition">
+                        🖼️ Polaroid
+                    </button>
+                    <button type="button" onclick="setPhotoStyle('neon')" id="style-btn-neon" class="style-btn py-2 px-2 rounded-xl text-xs font-semibold glass-light text-[#2C221E] hover:bg-white transition">
+                        🪩 Disco
+                    </button>
+                    <button type="button" onclick="setPhotoStyle('bw')" id="style-btn-bw" class="style-btn py-2 px-2 rounded-xl text-xs font-semibold glass-light text-[#2C221E] hover:bg-white transition">
+                        🖤 B&N
+                    </button>
+                </div>
+            </div>
+
+            <!-- Campos de Nombre y Dedicatoria (al escribir se pausa el auto-envío automáticamente) -->
+            <div class="space-y-2.5">
+                <div>
+                    <input type="text" id="guest-name-input" maxlength="30" placeholder="Tu nombre o apodo (ej: Sofi y Lucas)" onfocus="pauseAutoSendOnEdit()" oninput="pauseAutoSendOnEdit(); updatePolaroidPreview()" class="w-full px-4 py-2.5 rounded-xl glass-light text-[#2C221E] placeholder-[#8C7A70] text-sm font-medium focus:outline-none focus:border-amber-500 transition">
+                </div>
+                <div class="relative">
+                    <input type="text" id="guest-caption-input" maxlength="70" placeholder="Escribí un saludo para Ale... 🥂" onfocus="pauseAutoSendOnEdit()" oninput="pauseAutoSendOnEdit(); updatePolaroidPreview()" class="w-full px-4 py-2.5 rounded-xl glass-light text-[#2C221E] placeholder-[#8C7A70] text-sm font-medium focus:outline-none focus:border-amber-500 transition">
+                </div>
+                <!-- Frases rápidas con 1 toque -->
+                <div class="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+                    <button type="button" onclick="setQuickCaption('¡Felices 50 Ale! 🥂✨')" class="shrink-0 px-3 py-1.5 rounded-full glass-light hover:bg-white text-xs font-semibold text-[#2C221E]">¡Felices 50 Ale! 🥂</button>
+                    <button type="button" onclick="setQuickCaption('¡Qué fiestón Ale! 🪩💃')" class="shrink-0 px-3 py-1.5 rounded-full glass-light hover:bg-white text-xs font-semibold text-[#2C221E]">¡Qué fiestón Ale! 🪩</button>
+                    <button type="button" onclick="setQuickCaption('¡Por muchos años más! 🍾')" class="shrink-0 px-3 py-1.5 rounded-full glass-light hover:bg-white text-xs font-semibold text-[#2C221E]">¡Por muchos más! 🍾</button>
+                    <button type="button" onclick="setQuickCaption('¡Te queremos Ale! ❤️')" class="shrink-0 px-3 py-1.5 rounded-full glass-light hover:bg-white text-xs font-semibold text-[#2C221E]">¡Te queremos Ale! ❤️</button>
+                </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="grid grid-cols-3 gap-3 pt-1 pb-4">
+                <button type="button" onclick="resetGuestCapture()" class="col-span-1 py-3.5 px-4 rounded-2xl glass-light hover:bg-white text-[#2C221E] font-bold text-sm flex items-center justify-center gap-1.5 transition">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Repetir
+                </button>
+                <button type="button" id="btn-upload-photo" onclick="uploadPhotoToParty()" class="col-span-2 py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#2C221E] via-amber-800 to-fuchsia-800 hover:opacity-95 text-[#FAF6F0] font-bold text-base shadow-lg flex items-center justify-center gap-2 active:scale-95 transition">
+                    <i data-lucide="send" class="w-5 h-5 text-amber-300"></i>
+                    <span>Enviar a la Pantalla</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- PASO C: CONFIRMACIÓN RÁPIDA ANIMADA (VUELVE SOLA A LA CÁMARA PARA SEGUIR SACANDO) -->
+        <div id="guest-step-success" class="hidden flex-1 flex flex-col items-center justify-center text-center p-6 animate-pop-in">
+            <div class="relative w-24 h-24 rounded-full bg-gradient-to-tr from-amber-400 via-fuchsia-500 to-emerald-400 p-1 mb-5 shadow-2xl animate-bounce">
+                <div class="w-full h-full rounded-full bg-[#FAF6F0] flex items-center justify-center text-emerald-600">
+                    <i data-lucide="sparkles" class="w-11 h-11"></i>
+                </div>
+            </div>
+            <h2 class="font-serif text-3xl font-extrabold text-[#2C221E] mb-2">¡Voló a la pantalla! 🚀🪩</h2>
+            <p class="text-[#5C4B43] text-base max-w-xs mb-6 font-medium">
+                ¡Mirá la pantalla de <strong class="text-[#2C221E]">Mis 50 años Ale</strong>! La cámara se abre de nuevo en segundos...
+            </p>
+            <button type="button" onclick="resetGuestCapture()" class="w-full max-w-xs py-4 px-6 rounded-2xl bg-gradient-to-r from-[#2C221E] via-amber-800 to-fuchsia-800 text-[#FAF6F0] font-bold text-base shadow-lg flex items-center justify-center gap-2 active:scale-95 transition mb-3">
+                <i data-lucide="camera" class="w-5 h-5 text-amber-300"></i> Sacar Otra Ahora
+            </button>
+            <button type="button" onclick="switchMode('projector')" class="text-sm text-amber-800 hover:text-amber-950 font-bold py-2">
+                Ver la pantalla en vivo desde mi celular →
+            </button>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- VISTA 3: MODO PROYECTOR / PANTALLA EN VIVO                            -->
+    <!-- ===================================================================== -->
+    <section id="view-projector" class="hidden relative z-10 flex-1 flex flex-col h-screen w-screen overflow-hidden select-none">
+        
+        <!-- Barra Superior Protagonista del Proyector -->
+        <header id="projector-top-bar" class="relative z-30 flex items-center justify-between px-6 sm:px-10 py-4 transition-all duration-300">
+            <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 via-fuchsia-500 to-cyan-500 flex items-center justify-center shadow-lg text-white text-2xl">
+                    🪩
+                </div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <h1 class="font-serif font-extrabold text-2xl sm:text-4xl tracking-tight bg-gradient-to-r from-[#2C221E] via-amber-800 to-fuchsia-700 bg-clip-text text-transparent">
+                            Mis 50 años Ale
+                        </h1>
+                        <span class="px-2.5 py-0.5 rounded-full bg-fuchsia-500/15 border border-fuchsia-500/40 text-fuchsia-700 text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-fuchsia-600 animate-ping"></span> EN VIVO
+                        </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-[#5C4B43] font-medium">
+                        ¡A celebrar toda la noche! • <span id="projector-total-count" class="text-[#2C221E] font-bold">0</span> recuerdos compartidos
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botón destacado para mostrar/ampliar QR -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="openQrModal()" class="px-4 py-2.5 rounded-xl bg-[#2C221E] text-[#FAF6F0] hover:bg-amber-900 font-bold text-sm shadow-lg flex items-center gap-2 transition active:scale-95">
+                    <i data-lucide="qr-code" class="w-4 h-4 text-amber-300"></i>
+                    <span>Compartir / Mostrar QR</span>
+                </button>
+                <button onclick="switchMode('guest')" class="hidden sm:flex px-3.5 py-2.5 rounded-xl glass-light hover:bg-white text-[#2C221E] font-bold text-sm items-center gap-2 transition" title="Probar subir una foto ahora">
+                    <i data-lucide="smartphone" class="w-4 h-4 text-fuchsia-600"></i>
+                    <span>Simular Invitado</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ÁREA PRINCIPAL DE PROYECCIÓN -->
+        <div class="relative flex-1 flex items-center justify-center px-4 sm:px-10 pb-6 overflow-hidden">
+            
+            <!-- SUB-MODO A: PRESENTACIÓN EN VIVO (SLIDESHOW GIGANTE) -->
+            <div id="projector-layout-slideshow" class="w-full h-full flex items-center justify-center">
+                <div id="slideshow-stage" class="relative w-full max-w-5xl h-full max-h-[80vh] flex items-center justify-center">
+                    <!-- Aquí se renderiza dinámicamente la foto actual en grande -->
+                </div>
+            </div>
+
+            <!-- SUB-MODO B: MURO EN TIEMPO REAL (COLLAGE / GRILLA) -->
+            <div id="projector-layout-grid" class="hidden w-full h-full overflow-y-auto pr-2 pb-20">
+                <div id="live-grid-container" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5 auto-rows-max">
+                    <!-- Aquí se renderizan todas las fotos en vivo -->
+                </div>
+            </div>
+
+            <!-- TARJETA FLOTANTE DEL CÓDIGO QR EN LA ESQUINA (SIEMPRE ACCESIBLE) -->
+            <div id="corner-qr-card" class="fixed bottom-6 right-6 z-30 glass rounded-2xl p-3.5 shadow-2xl border-2 border-amber-400/50 flex items-center gap-3.5 transition-all duration-300 hover:scale-105 cursor-pointer" onclick="openQrModal()">
+                <div id="corner-qr-code" class="qr-wrapper bg-white p-1.5 rounded-xl shrink-0 shadow-inner"></div>
+                <div class="pr-2 max-w-[155px]">
+                    <span class="inline-block px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-900 text-[10px] font-bold uppercase tracking-wider mb-1">🪩 ¡Sumate!</span>
+                    <p class="font-display font-bold text-sm text-[#2C221E] leading-snug">Escaneá el QR y subí tu foto</p>
+                    <p class="text-[11px] text-[#5C4B43] mt-0.5">Clic para agrandar</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALERTA DE "¡NUEVA FOTO!" CUANDO UN INVITADO SUBE ALGO -->
+        <div id="new-photo-banner" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-40 px-6 py-3 rounded-full bg-gradient-to-r from-[#2C221E] via-amber-700 to-fuchsia-700 text-white font-display font-extrabold text-base sm:text-lg shadow-2xl flex items-center gap-3 animate-bounce border border-amber-300/60">
+            <span>📸 ¡NUEVA FOTO EN LOS 50 DE ALE! 🪩</span>
+        </div>
+
+        <!-- BARRA FLOTANTE INFERIOR DE CONTROLES DEL ANFITRIÓN (SE AUTO-OCULTA) -->
+        <div id="projector-bottom-controls" class="fixed bottom-6 left-6 z-30 glass rounded-2xl p-2 flex items-center gap-1.5 shadow-2xl transition-all duration-300">
+            <button onclick="setProjectorLayout('slideshow')" id="btn-layout-slideshow" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-[#2C221E] text-amber-200 flex items-center gap-1.5 transition">
+                <i data-lucide="play-square" class="w-4 h-4"></i> Presentación
+            </button>
+            <button onclick="setProjectorLayout('grid')" id="btn-layout-grid" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-[#2C221E] hover:bg-white/70 flex items-center gap-1.5 transition">
+                <i data-lucide="layout-grid" class="w-4 h-4"></i> Muro
+            </button>
+            <div class="w-px h-6 bg-amber-900/15 mx-1"></div>
+            <button onclick="toggleCornerQr()" id="btn-toggle-corner-qr" class="p-2 rounded-xl text-[#2C221E] hover:bg-white/70 transition" title="Mostrar/Ocultar QR de esquina">
+                <i data-lucide="qr-code" class="w-4 h-4"></i>
+            </button>
+            <button onclick="toggleFullscreen()" class="p-2 rounded-xl text-[#2C221E] hover:bg-white/70 transition" title="Pantalla Completa">
+                <i data-lucide="maximize" class="w-4 h-4"></i>
+            </button>
+            <button onclick="openModerationModal()" class="p-2 rounded-xl text-[#2C221E] hover:bg-white/70 transition" title="Moderar y Descargar Fotos">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+            </button>
+            <button onclick="switchMode('home')" class="p-2 rounded-xl text-[#5C4B43] hover:bg-white/70 hover:text-[#2C221E] transition" title="Volver al Inicio">
+                <i data-lucide="home" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 1: CÓDIGO QR GIGANTE PARA COMPARTIR / PROYECTAR                 -->
+    <!-- ===================================================================== -->
+    <div id="modal-qr" class="hidden fixed inset-0 z-50 bg-[#2C221E]/65 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass rounded-3xl max-w-md w-full p-6 sm:p-8 text-center relative border-2 border-amber-400/50 shadow-2xl animate-pop-in bg-[#FAF6F0]">
+            <button onclick="closeQrModal()" class="absolute top-4 right-4 p-2 rounded-full bg-amber-900/10 hover:bg-amber-900/20 text-[#2C221E] transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <span class="inline-block px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-900 text-xs font-bold uppercase tracking-wider mb-2">
+                🪩 Mis 50 años Ale
+            </span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#2C221E] mb-2">
+                ¡Escaneá y subí tu foto! 📸
+            </h3>
+            <p class="text-[#5C4B43] text-sm mb-6 font-medium">
+                Apuntá con la cámara de tu celular al código QR para abrir la cámara de la fiesta al instante.
+            </p>
+
+            <!-- Contenedor del QR Grande -->
+            <div class="bg-white p-5 rounded-3xl inline-block shadow-xl border-2 border-amber-300/60 mb-5">
+                <div id="modal-qr-code" class="qr-wrapper"></div>
+            </div>
+
+            <!-- URL y Botones de Acción -->
+            <div class="bg-white/80 border border-amber-400/40 rounded-xl p-2.5 flex items-center justify-between gap-2 mb-4">
+                <input id="guest-share-url" type="text" readonly class="bg-transparent text-xs text-[#2C221E] font-medium w-full focus:outline-none px-2 truncate">
+                <button onclick="copyGuestLink()" class="shrink-0 px-3 py-1.5 rounded-lg bg-[#2C221E] hover:bg-amber-900 text-amber-200 text-xs font-bold flex items-center gap-1.5 transition">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="closeQrModal(); switchMode('guest');" class="py-3 px-4 rounded-xl glass-light hover:bg-white text-[#2C221E] text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                    <i data-lucide="camera" class="w-4 h-4 text-fuchsia-600"></i> Probar Cámara
+                </button>
+                <button onclick="closeQrModal()" class="py-3 px-4 rounded-xl bg-[#2C221E] text-[#FAF6F0] hover:bg-amber-900 text-xs font-bold transition">
+                    Listo, volver
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 2: PANEL DE ANFITRIÓN (MODERACIÓN Y DESCARGA DE ÁLBUM)          -->
+    <!-- ===================================================================== -->
+    <div id="modal-moderation" class="hidden fixed inset-0 z-50 bg-[#2C221E]/70 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass rounded-3xl max-w-3xl w-full max-h-[88vh] flex flex-col border-2 border-amber-400/50 shadow-2xl animate-pop-in overflow-hidden bg-[#FAF6F0]">
+            <div class="p-5 sm:p-6 border-b border-amber-900/10 flex items-center justify-between">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-[#2C221E] flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-amber-700"></i> Panel de Mis 50 años Ale
+                    </h3>
+                    <p class="text-xs text-[#5C4B43] mt-0.5">Administrá las fotos en pantalla o descargá todo el álbum de la fiesta</p>
+                </div>
+                <button onclick="closeModerationModal()" class="p-2 rounded-full bg-amber-900/10 hover:bg-amber-900/20 text-[#2C221E] transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Barra de herramientas de descarga -->
+            <div class="px-5 py-3.5 bg-amber-500/10 flex flex-wrap items-center justify-between gap-3 border-b border-amber-900/10">
+                <span class="text-sm text-[#5C4B43]">Total: <strong id="mod-photo-count" class="text-[#2C221E]">0</strong> fotos</span>
+                <button onclick="downloadAllPhotosZip()" id="btn-download-zip" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg transition">
+                    <i data-lucide="download" class="w-4 h-4"></i> Descargar Todas (.ZIP)
+                </button>
+            </div>
+
+            <!-- Lista de fotos para moderar -->
+            <div id="moderation-grid" class="p-5 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 flex-1">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- LÓGICA DE APLICACIÓN + FIREBASE REALTIME SYNC                         -->
+    <!-- ===================================================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ---------------------------------------------------------------------
+        // 1. ESTADO GLOBAL DE LA APLICACIÓN
+        // ---------------------------------------------------------------------
+        const state = {
+            mode: 'home', // 'home' | 'guest' | 'projector'
+            projectorLayout: 'slideshow', // 'slideshow' | 'grid'
+            photos: [], // Lista de fotos sincronizadas en tiempo real
+            currentSlideIndex: 0,
+            slideshowTimer: null,
+            capturedDataUrl: null,
+            selectedStyle: 'normal', // 'normal' | 'polaroid' | 'neon' | 'bw'
+            liveStream: null,
+            facingMode: 'environment',
+            firebaseReady: false,
+            user: null,
+            db: null,
+            appId: typeof __app_id !== 'undefined' ? __app_id : 'partycam-live-default',
+            knownPhotoIds: new Set(),
+            initialLoadDone: false,
+            cornerQrVisible: true,
+            autoSendTimer: null,
+            autoSendRemaining: 10,
+            autoSendPaused: false,
+            successReturnTimer: null
+        };
+
+        // ---------------------------------------------------------------------
+        // 2. INICIALIZACIÓN DE FIREBASE Y SINCRONIZACIÓN EN TIEMPO REAL
+        // ---------------------------------------------------------------------
+        async function initApp() {
+            lucide.createIcons();
+            setupQrCodes();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialMode = urlParams.get('mode');
+            if (initialMode === 'guest' || initialMode === 'projector') {
+                switchMode(initialMode);
+            }
+
+            try {
+                const defaultFirebaseConfig = {
+                    apiKey: "AIzaSyBbITVrbrF2k0vFraqlKZYnPOCBL86goV4",
+                    authDomain: "ale-e4189.firebaseapp.com",
+                    projectId: "ale-e4189",
+                    storageBucket: "ale-e4189.firebasestorage.app",
+                    messagingSenderId: "741305963598",
+                    appId: "1:741305963598:web:96cafa09fcd6818e301f1f",
+                    measurementId: "G-L6DXVRDSHL"
+                };
+
+                const firebaseConfig = (typeof __firebase_config !== 'undefined' && __firebase_config)
+                    ? JSON.parse(__firebase_config)
+                    : defaultFirebaseConfig;
+
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                state.db = getFirestore(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        state.user = user;
+                        state.firebaseReady = true;
+                        updateConnectionBadge(true);
+                        subscribeToPartyPhotos();
+                    }
+                });
+            } catch (error) {
+                console.warn("Iniciando en modo local de demostración:", error);
+                updateConnectionBadge(false);
+                loadDemoPhotos();
+            }
+        }
+
+        function updateConnectionBadge(isCloud) {
+            const el = document.getElementById('connection-status-text');
+            if (el) {
+                el.textContent = isCloud ? 'Nube en vivo conectada' : 'Modo Fiesta Local Activo';
+            }
+        }
+
+        function subscribeToPartyPhotos() {
+            const photosCol = collection(state.db, 'artifacts', state.appId, 'public', 'data', 'party_photos');
+            onSnapshot(photosCol, (snapshot) => {
+                const fetched = [];
+                let hasBrandNewPhoto = false;
+
+                snapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    fetched.push({ id: docSnap.id, ...data });
+
+                    if (state.initialLoadDone && !state.knownPhotoIds.has(docSnap.id)) {
+                        hasBrandNewPhoto = true;
+                    }
+                    state.knownPhotoIds.add(docSnap.id);
+                });
+
+                fetched.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+                if (fetched.length === 0) {
+                    loadDemoPhotos();
+                } else {
+                    state.photos = fetched;
+                    updateAllViews();
+                }
+
+                if (hasBrandNewPhoto && state.mode === 'projector') {
+                    state.currentSlideIndex = 0;
+                    renderProjectorSlideshow();
+                    triggerNewPhotoAlert();
+                }
+
+                state.initialLoadDone = true;
+            }, (err) => {
+                console.error("Error leyendo fotos en vivo:", err);
+                loadDemoPhotos();
+            });
+        }
+
+        function loadDemoPhotos() {
+            state.photos = [
+                {
+                    id: 'demo-1',
+                    isDemo: true,
+                    imageUrl: createDemoCardSvg('¡Felices 50 Ale! 🪩', 'Escaneá el QR y sacá tu foto', '#D97706', '#DB2777'),
+                    author: 'Los 50 de Ale',
+                    caption: '¡Bienvenidos a la fiesta! Escaneá el QR para aparecer aquí ✨',
+                    style: 'normal',
+                    createdAt: Date.now()
+                },
+                {
+                    id: 'demo-2',
+                    isDemo: true,
+                    imageUrl: createDemoCardSvg('¡A bailar toda la noche! 💃', 'Subí tus selfies y brindis en vivo', '#7C3AED', '#0891B2'),
+                    author: 'Pista Disco',
+                    caption: '¡Que comience la celebración de los 50 años de Ale! 🥂',
+                    style: 'polaroid',
+                    createdAt: Date.now() - 60000
+                }
+            ];
+            updateAllViews();
+        }
+
+        function createDemoCardSvg(title, subtitle, color1, color2) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+                <defs>
+                    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="${color1}"/>
+                        <stop offset="100%" stop-color="${color2}"/>
+                    </linearGradient>
+                </defs>
+                <rect width="800" height="600" fill="url(#g)"/>
+                <circle cx="400" cy="210" r="75" fill="rgba(255,255,255,0.22)"/>
+                <text x="400" y="230" font-size="68" text-anchor="middle" fill="#FFFFFF">🪩</text>
+                <text x="400" y="355" font-family="Georgia, serif" font-weight="bold" font-size="44" text-anchor="middle" fill="#FFFFFF">${title}</text>
+                <text x="400" y="415" font-family="sans-serif" font-size="24" text-anchor="middle" fill="rgba(255,255,255,0.92)">${subtitle}</text>
+            </svg>`;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
+        // ---------------------------------------------------------------------
+        // 3. NAVEGACIÓN ENTRE VISTAS Y CONTROLES DEL PROYECTOR
+        // ---------------------------------------------------------------------
+        window.switchMode = function(newMode) {
+            state.mode = newMode;
+            stopLiveCamera();
+            clearInterval(state.autoSendTimer);
+            clearTimeout(state.successReturnTimer);
+
+            document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-guest').classList.add('hidden');
+            document.getElementById('view-projector').classList.add('hidden');
+
+            if (newMode === 'home') {
+                document.getElementById('view-home').classList.remove('hidden');
+                clearInterval(state.slideshowTimer);
+            } else if (newMode === 'guest') {
+                document.getElementById('view-guest').classList.remove('hidden');
+                resetGuestCapture();
+                clearInterval(state.slideshowTimer);
+                startLiveCamera();
+            } else if (newMode === 'projector') {
+                document.getElementById('view-projector').classList.remove('hidden');
+                updateAllViews();
+                startSlideshowTimer();
+            }
+            lucide.createIcons();
+        };
+
+        window.setProjectorLayout = function(layout) {
+            state.projectorLayout = layout;
+            const btnSlide = document.getElementById('btn-layout-slideshow');
+            const btnGrid = document.getElementById('btn-layout-grid');
+            const viewSlide = document.getElementById('projector-layout-slideshow');
+            const viewGrid = document.getElementById('projector-layout-grid');
+
+            if (layout === 'slideshow') {
+                btnSlide.className = "px-3.5 py-2 rounded-xl text-xs font-bold bg-[#2C221E] text-amber-200 flex items-center gap-1.5 transition";
+                btnGrid.className = "px-3.5 py-2 rounded-xl text-xs font-semibold text-[#2C221E] hover:bg-white/70 flex items-center gap-1.5 transition";
+                viewSlide.classList.remove('hidden');
+                viewGrid.classList.add('hidden');
+                startSlideshowTimer();
+            } else {
+                btnGrid.className = "px-3.5 py-2 rounded-xl text-xs font-bold bg-[#2C221E] text-amber-200 flex items-center gap-1.5 transition";
+                btnSlide.className = "px-3.5 py-2 rounded-xl text-xs font-semibold text-[#2C221E] hover:bg-white/70 flex items-center gap-1.5 transition";
+                viewGrid.classList.remove('hidden');
+                viewSlide.classList.add('hidden');
+                clearInterval(state.slideshowTimer);
+                renderProjectorGrid();
+            }
+        };
+
+        window.toggleCornerQr = function() {
+            state.cornerQrVisible = !state.cornerQrVisible;
+            const card = document.getElementById('corner-qr-card');
+            if (state.cornerQrVisible) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        };
+
+        window.toggleFullscreen = function() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {
+                    showToast("Presioná F11 para pantalla completa", "info");
+                });
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        };
+
+        // ---------------------------------------------------------------------
+        // 4. GENERACIÓN DE CÓDIGOS QR
+        // ---------------------------------------------------------------------
+        function getGuestShareUrl() {
+            const url = new URL(window.location.href);
+            url.searchParams.set('mode', 'guest');
+            return url.toString();
+        }
+
+        function setupQrCodes() {
+            const shareUrl = getGuestShareUrl();
+            const urlInput = document.getElementById('guest-share-url');
+            if (urlInput) urlInput.value = shareUrl;
+
+            const cornerEl = document.getElementById('corner-qr-code');
+            if (cornerEl) {
+                cornerEl.innerHTML = '';
+                new QRCode(cornerEl, {
+                    text: shareUrl,
+                    width: 84,
+                    height: 84,
+                    colorDark: "#2C221E",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+            }
+
+            const modalEl = document.getElementById('modal-qr-code');
+            if (modalEl) {
+                modalEl.innerHTML = '';
+                new QRCode(modalEl, {
+                    text: shareUrl,
+                    width: 220,
+                    height: 220,
+                    colorDark: "#2C221E",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        }
+
+        window.openQrModal = function() {
+            setupQrCodes();
+            document.getElementById('modal-qr').classList.remove('hidden');
+            lucide.createIcons();
+        };
+
+        window.closeQrModal = function() {
+            document.getElementById('modal-qr').classList.add('hidden');
+        };
+
+        window.copyGuestLink = function() {
+            const input = document.getElementById('guest-share-url');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                showToast("¡Enlace copiado! Compartilo por WhatsApp", "success");
+            } catch (e) {
+                showToast("No se pudo copiar automáticamente", "error");
+            }
+        };
+
+        // ---------------------------------------------------------------------
+        // 5. CÁMARA EN VIVO, COMPRESIÓN Y FILTROS
+        // ---------------------------------------------------------------------
+        window.startLiveCamera = async function() {
+            try {
+                stopLiveCamera();
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    throw new Error("Cámara web no soportada en este contexto");
+                }
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: state.facingMode, width: { ideal: 1280 }, height: { ideal: 1280 } },
+                    audio: false
+                });
+                state.liveStream = stream;
+                const video = document.getElementById('live-video');
+                video.srcObject = stream;
+                video.classList.remove('hidden');
+                document.getElementById('camera-placeholder').classList.add('hidden');
+                document.getElementById('live-camera-controls').classList.remove('hidden');
+                lucide.createIcons();
+            } catch (err) {
+                console.warn("No se pudo abrir cámara WebRTC:", err);
+                showToast("Permití el acceso a la cámara en tu navegador para sacar fotos", "info");
+            }
+        };
+
+        window.stopLiveCamera = function() {
+            if (state.liveStream) {
+                state.liveStream.getTracks().forEach(track => track.stop());
+                state.liveStream = null;
+            }
+            const video = document.getElementById('live-video');
+            if (video) {
+                video.srcObject = null;
+                video.classList.add('hidden');
+            }
+            const placeholder = document.getElementById('camera-placeholder');
+            const controls = document.getElementById('live-camera-controls');
+            if (placeholder) placeholder.classList.remove('hidden');
+            if (controls) controls.classList.add('hidden');
+        };
+
+        window.toggleCameraFacing = function() {
+            state.facingMode = state.facingMode === 'environment' ? 'user' : 'environment';
+            startLiveCamera();
+        };
+
+        window.captureLiveFrame = function() {
+            const video = document.getElementById('live-video');
+            if (!video || !video.videoWidth) return;
+
+            triggerCameraFlash();
+
+            const canvas = document.createElement('canvas');
+            const maxDim = 960;
+            let w = video.videoWidth;
+            let h = video.videoHeight;
+            if (w > maxDim || h > maxDim) {
+                if (w > h) {
+                    h = Math.round((h * maxDim) / w);
+                    w = maxDim;
+                } else {
+                    w = Math.round((w * maxDim) / h);
+                    h = maxDim;
+                }
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            if (state.facingMode === 'user') {
+                ctx.translate(w, 0);
+                ctx.scale(-1, 1);
+            }
+            ctx.drawImage(video, 0, 0, w, h);
+
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.78);
+            stopLiveCamera();
+            openGuestPreview(dataUrl);
+        };
+
+        window.handleFileSelect = function(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            triggerCameraFlash();
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxDim = 960;
+                    let w = img.width;
+                    let h = img.height;
+                    if (w > maxDim || h > maxDim) {
+                        if (w > h) {
+                            h = Math.round((h * maxDim) / w);
+                            w = maxDim;
+                        } else {
+                            w = Math.round((w * maxDim) / h);
+                            h = maxDim;
+                        }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.78);
+                    openGuestPreview(compressedDataUrl);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        };
+
+        function triggerCameraFlash() {
+            const flash = document.getElementById('camera-flash-overlay');
+            if (!flash) return;
+            flash.classList.remove('camera-flash-active');
+            void flash.offsetWidth;
+            flash.classList.add('camera-flash-active');
+        }
+
+        function openGuestPreview(dataUrl) {
+            state.capturedDataUrl = dataUrl;
+            const imgEl = document.getElementById('preview-image');
+            imgEl.src = dataUrl;
+            const frame = document.getElementById('preview-frame-container');
+            if (frame) {
+                frame.classList.remove('animate-fly-to-screen');
+            }
+            setPhotoStyle('normal');
+            updatePolaroidPreview();
+
+            document.getElementById('guest-step-capture').classList.add('hidden');
+            document.getElementById('guest-step-success').classList.add('hidden');
+            document.getElementById('guest-step-preview').classList.remove('hidden');
+            lucide.createIcons();
+
+            startAutoSendTimer();
+        }
+
+        function startAutoSendTimer() {
+            clearInterval(state.autoSendTimer);
+            state.autoSendRemaining = 10;
+            state.autoSendPaused = false;
+            updateAutoSendUi();
+
+            state.autoSendTimer = setInterval(() => {
+                if (state.autoSendPaused) return;
+                state.autoSendRemaining -= 1;
+                updateAutoSendUi();
+                if (state.autoSendRemaining <= 0) {
+                    clearInterval(state.autoSendTimer);
+                    uploadPhotoToParty();
+                }
+            }, 1000);
+        }
+
+        function updateAutoSendUi() {
+            const label = document.getElementById('auto-send-label');
+            const btn = document.getElementById('btn-toggle-autosend');
+            if (!label || !btn) return;
+
+            if (state.autoSendPaused) {
+                label.innerHTML = 'Pausado mientras escribís ✍️';
+                btn.textContent = 'Reanudar envío';
+            } else {
+                label.innerHTML = `¡Lista para volar! Envío en <strong class="text-fuchsia-700">${state.autoSendRemaining}s</strong>`;
+                btn.textContent = 'Pausar para escribir';
+            }
+        }
+
+        window.toggleAutoSendTimer = function() {
+            state.autoSendPaused = !state.autoSendPaused;
+            updateAutoSendUi();
+        };
+
+        window.pauseAutoSendOnEdit = function() {
+            if (!state.autoSendPaused) {
+                state.autoSendPaused = true;
+                updateAutoSendUi();
+            }
+        };
+
+        window.setPhotoStyle = function(style) {
+            state.selectedStyle = style;
+            const imgEl = document.getElementById('preview-image');
+            const polaroidBox = document.getElementById('polaroid-caption-preview');
+            const sticker = document.getElementById('preview-sticker-overlay');
+            const frame = document.getElementById('preview-frame-container');
+
+            document.querySelectorAll('.style-btn').forEach(btn => {
+                btn.className = "style-btn py-2 px-2 rounded-xl text-xs font-semibold glass-light text-[#2C221E] hover:bg-white transition";
+            });
+            const activeBtn = document.getElementById(`style-btn-${style}`);
+            if (activeBtn) {
+                activeBtn.className = "style-btn py-2 px-2 rounded-xl text-xs font-bold bg-[#2C221E] text-amber-200 border border-amber-400 transition";
+            }
+
+            imgEl.classList.remove('filter-normal', 'filter-bw', 'filter-neon', 'filter-vintage');
+            polaroidBox.classList.add('hidden');
+            sticker.classList.add('hidden');
+            frame.classList.remove('p-3', 'bg-white');
+
+            if (style === 'normal') {
+                imgEl.classList.add('filter-normal');
+            } else if (style === 'polaroid') {
+                imgEl.classList.add('filter-vintage');
+                polaroidBox.classList.remove('hidden');
+                frame.classList.add('p-3', 'bg-white');
+            } else if (style === 'neon') {
+                imgEl.classList.add('filter-neon');
+                sticker.classList.remove('hidden');
+            } else if (style === 'bw') {
+                imgEl.classList.add('filter-bw');
+            }
+        };
+
+        window.updatePolaroidPreview = function() {
+            const name = document.getElementById('guest-name-input').value.trim() || 'Invitado/a';
+            const caption = document.getElementById('guest-caption-input').value.trim() || '¡Felices 50 Ale! 🪩✨';
+            document.getElementById('polaroid-text').textContent = caption;
+            document.getElementById('polaroid-author').textContent = name;
+        };
+
+        window.setQuickCaption = function(text) {
+            pauseAutoSendOnEdit();
+            document.getElementById('guest-caption-input').value = text;
+            updatePolaroidPreview();
+        };
+
+        window.resetGuestCapture = function() {
+            clearInterval(state.autoSendTimer);
+            clearTimeout(state.successReturnTimer);
+            state.capturedDataUrl = null;
+            const frame = document.getElementById('preview-frame-container');
+            if (frame) {
+                frame.classList.remove('animate-fly-to-screen');
+            }
+            document.getElementById('guest-step-preview').classList.add('hidden');
+            document.getElementById('guest-step-success').classList.add('hidden');
+            document.getElementById('guest-step-capture').classList.remove('hidden');
+            lucide.createIcons();
+            if (state.mode === 'guest') {
+                startLiveCamera();
+            }
+        };
+
+        // ---------------------------------------------------------------------
+        // 6. SUBIDA DE FOTO A LA NUBE Y ANIMACIÓN DE VUELO A PANTALLA
+        // ---------------------------------------------------------------------
+        function applyFilterToDataUrl(dataUrl, style) {
+            return new Promise((resolve) => {
+                if (style === 'normal' || style === 'polaroid') {
+                    resolve(dataUrl);
+                    return;
+                }
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    if (style === 'bw') {
+                        ctx.filter = 'grayscale(100%) contrast(115%)';
+                    } else if (style === 'neon') {
+                        ctx.filter = 'contrast(120%) saturate(150%) hue-rotate(-10deg)';
+                    }
+                    ctx.drawImage(img, 0, 0);
+                    resolve(canvas.toDataURL('image/jpeg', 0.8));
+                };
+                img.src = dataUrl;
+            });
+        }
+
+        window.uploadPhotoToParty = async function() {
+            if (!state.capturedDataUrl) return;
+            clearInterval(state.autoSendTimer);
+
+            const btn = document.getElementById('btn-upload-photo');
+            const originalHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i><span>Enviando...</span>`;
+            lucide.createIcons();
+
+            const frame = document.getElementById('preview-frame-container');
+            if (frame) {
+                frame.classList.add('animate-fly-to-screen');
+            }
+
+            try {
+                const processedImage = await applyFilterToDataUrl(state.capturedDataUrl, state.selectedStyle);
+                const author = document.getElementById('guest-name-input').value.trim() || 'Invitado/a';
+                const caption = document.getElementById('guest-caption-input').value.trim() || '¡Felices 50 Ale! 🥂✨';
+
+                const newPhotoPayload = {
+                    imageUrl: processedImage,
+                    author: author,
+                    caption: caption,
+                    style: state.selectedStyle,
+                    createdAt: Date.now()
+                };
+
+                if (state.firebaseReady && state.db) {
+                    const photosCol = collection(state.db, 'artifacts', state.appId, 'public', 'data', 'party_photos');
+                    await addDoc(photosCol, newPhotoPayload);
+                } else {
+                    const localPhoto = { id: 'local-' + Date.now(), ...newPhotoPayload };
+                    state.photos = state.photos.filter(p => !p.isDemo);
+                    state.photos.unshift(localPhoto);
+                    updateAllViews();
+                }
+
+                await new Promise(r => setTimeout(r, 420));
+
+                document.getElementById('guest-step-preview').classList.add('hidden');
+                document.getElementById('guest-step-success').classList.remove('hidden');
+                document.getElementById('guest-caption-input').value = '';
+                lucide.createIcons();
+
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 75,
+                        spread: 75,
+                        origin: { y: 0.6 },
+                        colors: ['#D97706', '#EC4899', '#06B6D4', '#FDE047']
+                    });
+                }
+
+                clearTimeout(state.successReturnTimer);
+                state.successReturnTimer = setTimeout(() => {
+                    if (state.mode === 'guest') {
+                        resetGuestCapture();
+                    }
+                }, 2200);
+            } catch (error) {
+                console.error("Error subiendo foto:", error);
+                if (frame) frame.classList.remove('animate-fly-to-screen');
+                showToast("Hubo un problema al subir la foto. Intentá de nuevo.", "error");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
+                lucide.createIcons();
+            }
+        };
+
+        // ---------------------------------------------------------------------
+        // 7. RENDERIZADO DEL PROYECTOR EN VIVO (ANIMADO CONTINUAMENTE)
+        // ---------------------------------------------------------------------
+        function updateAllViews() {
+            const realPhotosCount = state.photos.filter(p => !p.isDemo).length;
+            const displayCount = realPhotosCount > 0 ? realPhotosCount : state.photos.length;
+
+            const guestCounter = document.getElementById('guest-photo-count');
+            const projCounter = document.getElementById('projector-total-count');
+            const modCounter = document.getElementById('mod-photo-count');
+
+            if (guestCounter) guestCounter.textContent = displayCount;
+            if (projCounter) projCounter.textContent = displayCount;
+            if (modCounter) modCounter.textContent = realPhotosCount;
+
+            if (state.mode === 'projector') {
+                if (state.projectorLayout === 'slideshow') {
+                    renderProjectorSlideshow();
+                } else {
+                    renderProjectorGrid();
+                }
+            }
+        }
+
+        function startSlideshowTimer() {
+            clearInterval(state.slideshowTimer);
+            renderProjectorSlideshow();
+            state.slideshowTimer = setInterval(() => {
+                if (state.photos.length > 1) {
+                    state.currentSlideIndex = (state.currentSlideIndex + 1) % state.photos.length;
+                    transitionProjectorSlide();
+                }
+            }, 10000);
+        }
+
+        function transitionProjectorSlide() {
+            const stage = document.getElementById('slideshow-stage');
+            const currentCard = stage && stage.firstElementChild;
+            if (currentCard) {
+                currentCard.classList.remove('slide-enter-dynamic', 'animate-photo-float');
+                currentCard.classList.add('slide-exit-dynamic');
+                setTimeout(() => renderProjectorSlideshow(), 360);
+            } else {
+                renderProjectorSlideshow();
+            }
+        }
+
+        function renderProjectorSlideshow() {
+            const stage = document.getElementById('slideshow-stage');
+            if (!stage || state.photos.length === 0) return;
+
+            if (state.currentSlideIndex >= state.photos.length) {
+                state.currentSlideIndex = 0;
+            }
+
+            const photo = state.photos[state.currentSlideIndex];
+            const isPolaroid = photo.style === 'polaroid';
+            const isNeon = photo.style === 'neon';
+
+            const timeAgo = formatRelativeTime(photo.createdAt);
+
+            stage.innerHTML = `
+                <div class="slide-enter-dynamic w-full h-full flex flex-col items-center justify-center">
+                    <div class="animate-photo-float relative max-h-[75vh] max-w-4xl w-auto rounded-3xl overflow-hidden shadow-[0_25px_70px_-15px_rgba(44,34,30,0.4)] ${isPolaroid ? 'bg-[#FFFDF9] p-4 sm:p-6 pb-8 text-[#2C221E] border-2 border-amber-300/60' : 'glass border-2 border-amber-400/50'} flex flex-col">
+                        <div class="relative overflow-hidden rounded-2xl flex items-center justify-center bg-[#1F1815] disco-shimmer">
+                            <img src="${photo.imageUrl}" alt="Foto de fiesta" class="max-h-[58vh] w-auto object-contain animate-ken-burns">
+                            ${isNeon ? `<span class="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-fuchsia-600 to-amber-500 text-white font-extrabold text-xs shadow-lg animate-pulse">🪩 ¡MIS 50 AÑOS ALE!</span>` : ''}
+                            <div class="pointer-events-none absolute top-4 left-4 text-amber-300 text-xl animate-sparkle-twinkle">✦</div>
+                            <div class="pointer-events-none absolute bottom-4 right-4 text-fuchsia-300 text-xl animate-sparkle-twinkle" style="animation-delay: 0.8s;">✦</div>
+                        </div>
+                        
+                        <div class="${isPolaroid ? 'pt-4 text-center' : 'p-4 sm:p-5 bg-[#FAF6F0]/95 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-2'}">
+                            <div>
+                                <p class="${isPolaroid ? 'font-handwriting text-3xl sm:text-4xl font-bold text-[#2C221E]' : 'font-display text-lg sm:text-2xl font-bold text-[#2C221E]'}">
+                                    "${escapeHtml(photo.caption || '¡Felices 50 Ale!')}"
+                                </p>
+                                <p class="${isPolaroid ? 'text-xs uppercase tracking-widest text-amber-800 font-bold mt-1' : 'text-xs sm:text-sm text-amber-800 font-bold mt-0.5'}">
+                                    📸 ${escapeHtml(photo.author || 'Invitado/a')} • <span class="opacity-75 font-medium">${timeAgo}</span>
+                                </p>
+                            </div>
+                            ${!isPolaroid ? `
+                            <div class="shrink-0 flex items-center gap-1.5 text-xs font-bold text-[#5C4B43] bg-amber-500/15 px-3 py-1.5 rounded-full border border-amber-400/40">
+                                <span>${state.currentSlideIndex + 1} / ${state.photos.length}</span>
+                            </div>` : ''}
+                        </div>
+
+                        <!-- Barra de progreso animada hasta la siguiente foto -->
+                        <div class="w-full h-1.5 bg-amber-900/10 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-amber-500 via-fuchsia-500 to-cyan-500 timeline-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProjectorGrid() {
+            const container = document.getElementById('live-grid-container');
+            if (!container) return;
+
+            container.innerHTML = state.photos.map((photo, idx) => {
+                const tiltA = (idx % 2 === 0 ? -1.8 : 1.6) + 'deg';
+                const tiltB = (idx % 2 === 0 ? 1.5 : -1.7) + 'deg';
+                const dur = (4.2 + (idx % 4) * 0.55).toFixed(2) + 's';
+                const delay = ((idx % 5) * -0.7).toFixed(2) + 's';
+
+                return `
+                <div style="--tilt-a:${tiltA}; --tilt-b:${tiltB}; --bob-dur:${dur}; --bob-delay:${delay};" class="wall-card-floating group relative rounded-2xl overflow-hidden ${photo.style === 'polaroid' ? 'bg-[#FFFDF9] p-2.5 pb-4 text-[#2C221E] border border-amber-300/60' : 'glass border border-amber-400/40'} shadow-xl transition-transform duration-300 hover:scale-105 hover:z-20">
+                    <div class="aspect-square w-full overflow-hidden rounded-xl bg-[#1F1815] disco-shimmer">
+                        <img src="${photo.imageUrl}" alt="Foto" class="w-full h-full object-cover animate-ken-burns">
+                    </div>
+                    <div class="${photo.style === 'polaroid' ? 'pt-2.5 text-center' : 'p-3 bg-[#FAF6F0]/95'}">
+                        <p class="${photo.style === 'polaroid' ? 'font-handwriting text-xl font-bold leading-tight truncate text-[#2C221E]' : 'text-xs sm:text-sm font-bold text-[#2C221E] truncate'}">
+                            ${escapeHtml(photo.caption || '¡Felices 50 Ale!')}
+                        </p>
+                        <p class="${photo.style === 'polaroid' ? 'text-[10px] uppercase tracking-wider text-amber-800 font-bold mt-0.5' : 'text-[11px] text-amber-800 font-semibold mt-0.5 truncate'}">
+                            ${escapeHtml(photo.author || 'Invitado/a')}
+                        </p>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        function triggerNewPhotoAlert() {
+            triggerCameraFlash();
+
+            const banner = document.getElementById('new-photo-banner');
+            if (banner) {
+                banner.classList.remove('hidden');
+                setTimeout(() => banner.classList.add('hidden'), 4000);
+            }
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 55,
+                    spread: 85,
+                    origin: { y: 0.25 },
+                    colors: ['#D97706', '#EC4899', '#06B6D4', '#FDE047']
+                });
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        // 8. MODERACIÓN Y DESCARGA DE ÁLBUM COMPLETO (.ZIP)
+        // ---------------------------------------------------------------------
+        window.openModerationModal = function() {
+            renderModerationGrid();
+            document.getElementById('modal-moderation').classList.remove('hidden');
+            lucide.createIcons();
+        };
+
+        window.closeModerationModal = function() {
+            document.getElementById('modal-moderation').classList.add('hidden');
+        };
+
+        function renderModerationGrid() {
+            const grid = document.getElementById('moderation-grid');
+            const realPhotos = state.photos.filter(p => !p.isDemo);
+
+            if (realPhotos.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-[#5C4B43] text-sm font-medium">Aún no hay fotos subidas por los invitados. ¡Escaneá el QR para subir la primera!</div>`;
+                return;
+            }
+
+            grid.innerHTML = realPhotos.map(photo => `
+                <div class="relative rounded-xl overflow-hidden bg-white border border-amber-400/40 shadow-sm flex flex-col">
+                    <img src="${photo.imageUrl}" class="w-full aspect-square object-cover">
+                    <div class="p-2.5 text-xs flex-1 flex flex-col justify-between bg-[#FAF6F0]">
+                        <div>
+                            <p class="font-bold text-[#2C221E] truncate">${escapeHtml(photo.author)}</p>
+                            <p class="text-[#5C4B43] truncate">${escapeHtml(photo.caption)}</p>
+                        </div>
+                        <button onclick="deletePartyPhoto('${photo.id}')" class="mt-2 w-full py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-600 text-rose-700 hover:text-white font-bold flex items-center justify-center gap-1 transition">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        window.deletePartyPhoto = async function(photoId) {
+            try {
+                if (state.firebaseReady && state.db && !photoId.startsWith('local-')) {
+                    await deleteDoc(doc(state.db, 'artifacts', state.appId, 'public', 'data', 'party_photos', photoId));
+                } else {
+                    state.photos = state.photos.filter(p => p.id !== photoId);
+                    if (state.photos.length === 0) loadDemoPhotos();
+                    updateAllViews();
+                }
+                renderModerationGrid();
+                showToast("Foto eliminada de la pantalla", "info");
+            } catch (e) {
+                showToast("No se pudo eliminar la foto", "error");
+            }
+        };
+
+        window.downloadAllPhotosZip = async function() {
+            const realPhotos = state.photos.filter(p => !p.isDemo);
+            if (realPhotos.length === 0) {
+                showToast("No hay fotos de invitados para descargar todavía", "info");
+                return;
+            }
+
+            const btn = document.getElementById('btn-download-zip');
+            btn.disabled = true;
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Generando ZIP...`;
+            lucide.createIcons();
+
+            try {
+                const zip = new JSZip();
+                const folder = zip.folder("Mis_50_Anos_Ale_Fotos");
+
+                realPhotos.forEach((photo, index) => {
+                    const base64Data = photo.imageUrl.split(',')[1];
+                    const safeAuthor = (photo.author || 'invitado').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+                    folder.file(`50_ale_${index + 1}_${safeAuthor}.jpg`, base64Data, { base64: true });
+                });
+
+                const blob = await zip.generateAsync({ type: "blob" });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `Mis_50_Anos_Ale_${new Date().toISOString().slice(0, 10)}.zip`;
+                link.click();
+                showToast("¡Álbum descargado con éxito!", "success");
+            } catch (e) {
+                showToast("Error al crear el archivo ZIP", "error");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i data-lucide="download" class="w-4 h-4"></i> Descargar Todas (.ZIP)`;
+                lucide.createIcons();
+            }
+        };
+
+        // ---------------------------------------------------------------------
+        // 9. UTILIDADES DE INTERFAZ (TOASTS, AUTO-OCULTAR CONTROLES, ETC.)
+        // ---------------------------------------------------------------------
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const colors = {
+                success: 'bg-emerald-700/95 border-emerald-400/50 text-white',
+                error: 'bg-rose-700/95 border-rose-400/50 text-white',
+                info: 'bg-[#2C221E]/95 border-amber-400/50 text-[#FAF6F0]'
+            };
+            toast.className = `px-4 py-3 rounded-2xl border backdrop-blur-md shadow-xl text-sm font-semibold text-center animate-pop-in ${colors[type] || colors.info}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3200);
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function formatRelativeTime(timestamp) {
+            if (!timestamp) return 'Ahora';
+            const diffSec = Math.floor((Date.now() - timestamp) / 1000);
+            if (diffSec < 60) return 'Hace un instante';
+            const diffMin = Math.floor(diffSec / 60);
+            if (diffMin < 60) return `Hace ${diffMin} min`;
+            const diffHr = Math.floor(diffMin / 60);
+            return `Hace ${diffHr} h`;
+        }
+
+        let mouseIdleTimer;
+        document.addEventListener('mousemove', () => {
+            if (state.mode !== 'projector') return;
+            const controls = document.getElementById('projector-bottom-controls');
+            if (controls) {
+                controls.classList.remove('projector-controls-hidden');
+                controls.classList.add('projector-controls-visible');
+                clearTimeout(mouseIdleTimer);
+                mouseIdleTimer = setTimeout(() => {
+                    controls.classList.remove('projector-controls-visible');
+                    controls.classList.add('projector-controls-hidden');
+                }, 4000);
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
